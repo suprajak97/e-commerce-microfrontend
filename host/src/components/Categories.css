@@ -1,0 +1,152 @@
+.categories-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  animation: fadeIn 0.5s ease;
+}
+
+.categories-header {
+  margin-bottom: 3rem;
+  max-width: 800px;
+}
+
+.categories-header h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.highlight-text {
+  color: #94a3b8;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.dark .highlight-text {
+  color: #64748b;
+}
+
+.categories-header p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.category-card {
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: transparent;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+}
+
+.category-card:hover .category-image {
+  transform: scale(1.05);
+}
+
+.category-image-wrapper {
+  position: relative;
+  height: 350px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+
+.category-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.badge-icon {
+  background-color: #3b82f6; /* Same vibrant blue icon matching screenshot */
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.category-card:nth-child(2) .badge-icon {
+  background-color: #a855f7; /* Purple icon for jewelery */
+}
+
+.badge-title {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  letter-spacing: -0.01em;
+}
+
+.category-info {
+  padding: 1.25rem 0.5rem;
+}
+
+.category-info p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .categories-header h1 {
+    font-size: 2.75rem;
+  }
+  .categories-page {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-header h1 {
+    font-size: 2.25rem;
+  }
+}
