@@ -17,32 +17,29 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install Monorepo Dependencies
+        run: |
+          npm config set legacy-peer-deps true
+          npm install
+
       - name: Build Host
         run: |
           cd host
-          npm config set legacy-peer-deps true
-          npm install
           npx webpack --mode production
 
       - name: Build Navbar
         run: |
           cd navbar
-          npm config set legacy-peer-deps true
-          npm install
           npx webpack --mode production
 
       - name: Build Products
         run: |
           cd products
-          npm config set legacy-peer-deps true
-          npm install
           npx webpack --mode production
 
       - name: Build Cart
         run: |
           cd cart
-          npm config set legacy-peer-deps true
-          npm install
           npx webpack --mode production
 
       - name: Assemble Final Deployment Directory
