@@ -1,0 +1,65 @@
+name: Deploy E-Commerce MFE to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Build Host
+        run: |
+          cd host
+          npm config set legacy-peer-deps true
+          npm install
+          npx webpack --mode production
+
+      - name: Build Navbar
+        run: |
+          cd navbar
+          npm config set legacy-peer-deps true
+          npm install
+          npx webpack --mode production
+
+      - name: Build Products
+        run: |
+          cd products
+          npm config set legacy-peer-deps true
+          npm install
+          npx webpack --mode production
+
+      - name: Build Cart
+        run: |
+          cd cart
+          npm config set legacy-peer-deps true
+          npm install
+          npx webpack --mode production
+
+      - name: Assemble Final Deployment Directory
+        run: |
+          mkdir release
+          cp -r host/dist/* release/
+          mkdir release/navbar
+          cp -r navbar/dist/* release/navbar/
+          mkdir release/products
+          cp -r products/dist/* release/products/
+          mkdir release/cart
+          cp -r cart/dist/* release/cart/
+          # Fix React Router SPA behavior
+          cp release/index.html release/404.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./release

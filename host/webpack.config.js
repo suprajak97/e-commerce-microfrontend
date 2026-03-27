@@ -32,9 +32,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'host',
       remotes: {
-        navbar: 'navbar@http://localhost:3001/remoteEntry.js',
-        products: 'products@http://localhost:3002/remoteEntry.js',
-        cart: 'cart@http://localhost:3003/remoteEntry.js',
+        navbar: `navbar@${process.env.CI ? 'https://suprajak97.github.io/e-commerce-microfrontend/navbar' : 'http://localhost:3001'}/remoteEntry.js`,
+        products: `products@${process.env.CI ? 'https://suprajak97.github.io/e-commerce-microfrontend/products' : 'http://localhost:3002'}/remoteEntry.js`,
+        cart: `cart@${process.env.CI ? 'https://suprajak97.github.io/e-commerce-microfrontend/cart' : 'http://localhost:3003'}/remoteEntry.js`,
       },
       shared: { react: { singleton: true, requiredVersion: '^18.2.0' }, 'react-dom': { singleton: true, requiredVersion: '^18.2.0' } },
     }),

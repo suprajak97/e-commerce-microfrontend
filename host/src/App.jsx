@@ -138,8 +138,9 @@ const AppContent = () => {
 };
 
 const App = () => {
+  const isGithubPages = window.location.hostname.includes('github.io');
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={isGithubPages ? '/e-commerce-microfrontend' : '/'}>
       <AppContent />
     </BrowserRouter>
   );
